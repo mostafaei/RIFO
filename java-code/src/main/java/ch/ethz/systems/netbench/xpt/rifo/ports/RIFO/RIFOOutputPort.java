@@ -58,12 +58,9 @@ public class RIFOOutputPort extends OutputPort {
         // we define three linked List: qWindow, qWindowMice, and qWindowElephant
         this.qWindow = new LinkedList(); // the original window
         // window to put the packets of short flows
-//        this.qWindowMice = new LinkedList();
-//        // window to put the packets of elephant flows
-//        this.qWindowElephant = new LinkedList();
+
         this.count = 0;
 
-        // avgqlen and avgcount are used for analysis
         this.avgqlen = 0;
         this.avgcount = 0;
 
@@ -73,8 +70,6 @@ public class RIFOOutputPort extends OutputPort {
         this.qlen = maxQueueSize;
 
         this.sampleCount = sampleCount;
-//        this.sampleCount = 1;
-        //this.qlen = 100;
     }
 
     @Override
@@ -101,13 +96,8 @@ public class RIFOOutputPort extends OutputPort {
 //            }
 
             Integer rank = (int) header.getPriority();
-//            System.out.println("packet rank: "+rank.toString()+" rifoRank="+rifoRank);
-            // ** (total) length of the queue
-
             this.avgcount = this.avgcount + 1;
             this.avgqlen = this.avgqlen + buffQueue.size();
-
-//            boolean admit_flag;
 
             //select the rank of the first packet if the rifoRank is zero
             if(rank>maxRank) {
@@ -117,31 +107,23 @@ public class RIFOOutputPort extends OutputPort {
                 minRank=rank;
 
             }
-
-            rifoRank=(double) (maxRank-rank)/(maxRank-minRank);
-            double avgRank=(maxRank+minRank)/2.0;
-//            rifoRank=findRank(rank);
+	     if(rank==0 )
+            {
+                rifoRank=0;
+            }
+            else {
+                rifoRank = (double) (rank-minRank) / (maxRank - minRank);
+            }
 
             double qRank=(this.qlen - buffQueue.size()) / this.qlen;
-//            System.out.println("rank = "+rank +" MAX: "+maxRank+" Min: " +minRank+ " avgRank=  "+avgRank +" RIFO: "+rifoRank+ " qRank: "+qRank);
-//            System.out.println("buff "+buffQueue.size() + "    k*qlen: " +k*this.qlen);
             this.count = this.count + 1;
-//            System.out.println("qWindow = "+qWindow.size()+" this.count: "+this.count + "  this.avgqlen "+ this.avgqlen );
             if (this.count == this.sampleCount) {
                 this.count = 0;
                 maxRank=Integer.MIN_VALUE;
                 minRank=Integer.MAX_VALUE;
-//                System.out.println("************* reset this.count ***************");
             }
-            // Marko's comments
-//            rifoRank=(double) (rank)/(maxRank-minRank);
-//            qRank=(buffQueue.size()) / this.qlen;
-//            if ((qRank<=k)  || (qRank>=rifoRank )) {
-//            if ((rifoRank>=0.9)  || (rifoRank<=qRank )) {
-            //Marko's comments
 
-//            if ((buffQueue.size() <= k*this.qlen)  || (rifoRank>=(qRank) )) {
-            if ( (buffQueue.size() <= k*this.qlen)  || rifoRank>=(qRank) ) {
+            if ( (buffQueue.size() <= k*this.qlen)  || rifoRank<=(qRank) ) {
 
                 IpHeader ipHeader = (IpHeader) packet;
 
@@ -230,34 +212,4 @@ public class RIFOOutputPort extends OutputPort {
             RIFOpr = (maxR - priority) / (maxR - minR);
             return RIFOpr;
         }
-
-//    public boolean compareQuantile(int priority, double quantile) {
-//        if (qWindow.size() == 0)
-//            return true;
-//        Object[] contentPIFO = qWindow.toArray();
-//        int count = 0;
-//        for (int i =0; i<contentPIFO.length; i++) {
-//            FullExtTcpPacket packet = (FullExtTcpPacket) contentPIFO[(int) i];
-//            if (priority > packet.getPriority())
-//                count += 1;
-//        }
-//        if (count * 1.0  < quantile * qWindow.size())
-//            return true;
-//        return false;
-////        Arrays.sort(contentPIFO);
-////
-////        //FullExtTcpPacket packet = (FullExtTcpPacket) contentPIFO[(int) (qWindow.size() * quantile)];
-////        FullExtTcpPacket packet;
-////        try {
-////            packet = (FullExtTcpPacket) contentPIFO[(int) (qWindow.size() * quantile)];
-////        }
-////        // quantile == 1
-////        catch(ArrayIndexOutOfBoundsException e) {
-////            packet = (FullExtTcpPacket) contentPIFO[(int) (qWindow.size() - 1)];
-////        }
-////
-////        if (priority <= packet.getPriority())
-////            return true;
-////        return false;
-//    }
 }

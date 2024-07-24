@@ -146,7 +146,7 @@ public class WFQRIFOOutputPort extends OutputPort {
 
             }
 
-            rifoRank=(double) (maxRank-rank)/(maxRank-minRank);
+            rifoRank=(double) (rank-minRank)/(maxRank-minRank);
             double avgRank=(maxRank+minRank)/2.0;
 
             double qRank=(this.qlen - buffQueue.size()) / this.qlen;
@@ -156,7 +156,7 @@ public class WFQRIFOOutputPort extends OutputPort {
                 maxRank=Integer.MIN_VALUE;
                 minRank=Integer.MAX_VALUE;
             }
-            if ((buffQueue.size() <= k*this.qlen)  || (rifoRank>=(qRank) )) {
+            if ((buffQueue.size() <= k*this.qlen)  || (rifoRank<=(qRank) )) {
                 IpHeader ipHeader = (IpHeader) packet;
 
                 if (buffQueue.size() + 1 <= this.qlen) {

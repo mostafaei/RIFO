@@ -35,6 +35,13 @@ public class MainSimulation {
             else if (figureIndex == 14) {
                 MainFigure14.main(dummy);
             }
+	    else if (figureIndex == 61)
+            {
+                MainFigure7.main(dummy);
+                MainFigure8.main(dummy);
+                MainFigure9.main(dummy);
+                MainFigure10.main(dummy);
+            }
             else if (figureIndex == 0)
             {
                 MainFigure7.main(dummy);
