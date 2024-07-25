@@ -120,7 +120,7 @@ xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
 
-ax.plot((RIFO_mean_small_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
+# ax.plot((RIFO_mean_small_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_mean_small_WS100),label='RIFO T=100' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_mean_small_WS500),label='RIFO T=500' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_mean_small_WS1000),label='RIFO T=1000' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
@@ -154,7 +154,7 @@ plt.close()
 set_paper_rcs()
 fig,ax = plt.subplots(nrows=1, ncols=1)
 
-ax.plot((RIFO_99FCT_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1,  mew=0.65)
+# ax.plot((RIFO_99FCT_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1,  mew=0.65)
 ax.plot((RIFO_99FCT_WS100),label='RIFO T=100' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_99FCT_WS500),label='RIFO T=500' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_99FCT_WS1000),label='RIFO T=1000' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
@@ -191,7 +191,7 @@ plt.close()
 #**************************Large********************************************
 set_paper_rcs()
 fig,ax = plt.subplots(nrows=1, ncols=1)
-ax.plot((RIFO_large_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
+# ax.plot((RIFO_large_WS30),label='RIFO T=30' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_large_WS100),label='RIFO T=100' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_large_WS500),label='RIFO T=500' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((RIFO_large_WS1000),label='RIFO T=1000' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)

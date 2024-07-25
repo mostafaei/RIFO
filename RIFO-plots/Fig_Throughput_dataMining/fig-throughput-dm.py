@@ -59,7 +59,7 @@ DCTCP_mean_small=[]
 DCTCP_large=[]
 
 
-file = "/Users/hmostafaei/Research/Desktop-win11-research/RIFO-plots-Sigmetrics-T50/Fig_Throughput_dataMining/pFabric_geq_1MB_throughput_mean_Gbps.dat"
+file = "pFabric_geq_1MB_throughput_mean_Gbps.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -136,8 +136,8 @@ legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0
 ax.set_yscale('log')
 ax.set_ylim(0.1,int(max(FlowCover_Throughputall__FB)))
 '''
-ax.set_ylim(0,8)
-ax.set_yticks(np.arange(0,10,2))
+ax.set_ylim(0,70)
+ax.set_yticks(np.arange(0,80,10))
 # ax.title.set_text('Flow size (0, 100KB)')
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
@@ -146,6 +146,6 @@ for ax in fig.get_axes():
     ax.set_ylabel('Average throughput (Gbps)')    
 
 fig.tight_layout() 
-name='/Users/hmostafaei/Research/Desktop-win11-research/RIFO-plots-Sigmetrics-T50/Fig_Throughput_dataMining/Throughput-geq-1MB-dataMining'
+name='Throughput-geq-1MB-dataMining'
 plt.savefig('%s.pdf'%name,format="pdf", bbox_inches='tight', pad_inches=0.05)
 plt.close()

@@ -126,8 +126,8 @@ legend =plt.legend(loc="upper left",numpoints=2, frameon=True, ncol=3, columnspa
 
 # ax.title.set_text('Flow size (0, 100KB)')
 # ytic=[0.35,0.40,0.45,0.50,0.55]
-ax.set_ylim(-.020,0.4)
-ax.set_yticks(np.arange(0,.5,0.1))
+ax.set_ylim(-.020,1.2)
+ax.set_yticks(np.arange(0,1.4,0.2))
 # ax.set_yticks(ytic)
 # ax.set_yticklabels([str(i) for i in ytic])
 xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
@@ -148,12 +148,12 @@ set_paper_rcs()
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
 
-ax.plot((RIFO_99FCT),label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1,  mew=0.65)
-ax.plot((AIFO_99FCT),label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((SPPIFO_99FCT),label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((PIFO_99FCT),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((DCTCP_99FCT),label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:purple',marker='^', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((TCP_99FCT),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(RIFO_99FCT,label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1,  mew=0.65)
+ax.plot(AIFO_99FCT,label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(SPPIFO_99FCT,label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(PIFO_99FCT,label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(DCTCP_99FCT,label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:purple',marker='^', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(TCP_99FCT,label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
 
 
 ax.grid(color='black', ls = '--',dashes=(5, 15), lw = 0.2,alpha=1)
@@ -168,8 +168,8 @@ legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0
 ax.set_yscale('log')
 ax.set_ylim(0.1,int(max(FlowCover_FCT99_FB)))
 '''
-ax.set_ylim(-.20,1.5)
-ax.set_yticks(np.arange(0,2,0.4))
+ax.set_ylim(-.020,16)
+ax.set_yticks(np.arange(0,20,4))
 # ax.title.set_text('Flow size (0, 100KB)')
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
@@ -185,12 +185,12 @@ plt.close()
 #**************************Large********************************************
 set_paper_rcs()
 fig,ax = plt.subplots(nrows=1, ncols=1)
-ax.plot((RIFO_large),label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((AIFO_large),label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((SPPIFO_large),label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((PIFO_large),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((DCTCP_large),label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:purple',marker='^', markersize=3,lw=1 ,  mew=0.65)
-ax.plot((TCP_large),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(RIFO_large,label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(AIFO_large,label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(SPPIFO_large,label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(PIFO_large,label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(DCTCP_large,label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:purple',marker='^', markersize=3,lw=1 ,  mew=0.65)
+ax.plot(TCP_large,label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
 
 
 # ax.title.set_text('Large flows')

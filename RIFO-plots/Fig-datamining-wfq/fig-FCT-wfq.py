@@ -64,7 +64,7 @@ DCTCP_mean_small=[]
 DCTCP_large=[]
 
 
-file = "pFabric_less_100KB_99th_fct_ms.dat"
+file = "fairness_less_100KB_99th_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -78,7 +78,7 @@ for i, line in enumerate(lines):
         AIFO_99FCT.append(float(l[6]))
         RIFO_99FCT.append(float(l[7]))
     
-file = "pFabric_less_100KB_mean_fct_ms.dat"
+file = "fairness_less_100KB_mean_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -93,7 +93,7 @@ for i, line in enumerate(lines):
         RIFO_mean_small.append(float(l[7]))
     
 
-file = "pFabric_geq_1MB_mean_fct_ms.dat"
+file = "fairness_geq_1MB_mean_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -116,7 +116,7 @@ TCP_color='tab:olive'
 AFQ_color='tab:brown'
 smallColor='black'
 
-
+print(RIFO_99FCT)
 xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 #******************************** avgFCT small*************************************
 
@@ -134,12 +134,8 @@ ax.grid(color='black', ls = '--',dashes=(5, 15), lw = 0.2,alpha=1)
 # legend =plt.legend(bbox_to_anchor=(0.95, 1.05),loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="upper left",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-# ax.title.set_text('Flow size (0, 100KB)')
-# ytic=[0.35,0.40,0.45,0.50,0.55]
-ax.set_ylim(0,5)
-ax.set_yticks(np.arange(0,6,1))
-# ax.set_yticks(ytic)
-# ax.set_yticklabels([str(i) for i in ytic])
+ax.set_ylim(0,0.3)
+ax.set_yticks(np.arange(0,0.35,.05))
 xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 print(xlabeles)
 for ax in fig.get_axes():
@@ -171,16 +167,8 @@ ax.grid(color='black', ls = '--',dashes=(5, 15), lw = 0.2,alpha=1)
 # legend =plt.legend(bbox_to_anchor=(0.95, 1.05),loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-# ytic=[2.5,3.0,3.5,4.0,4.5]
-# ax.set_ylim(2.5,4.5)
-# ax.set_yticks(ytic)
-# ax.set_yticklabels([str(i) for i in ytic])
-'''
-ax.set_yscale('log')
-ax.set_ylim(0.1,int(max(FlowCover_FCT99_FB)))
-'''
-ax.set_ylim(0,12)
-ax.set_yticks(range(0,14,2))
+ax.set_ylim(0,0.4)
+ax.set_yticks(np.arange(0,0.45,0.05))
 # ax.title.set_text('Flow size (0, 100KB)')
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
@@ -210,8 +198,8 @@ ax.plot((AFQ_large),label='AFQ' ,color=AFQ_color,linestyle='-', mfc='tab:brown',
 # legend =plt.legend(loc="best",numpoints=2, frameon=False, ncol=1, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-ax.set_ylim(0,270)
-ax.set_yticks(range(0,300,30))
+ax.set_ylim(0,6)
+ax.set_yticks(np.arange(0,7,1))
 '''
 ax.set_ylim(0,700)
 ax.set_yticks(range(0,800,100))

@@ -74,8 +74,7 @@ for i, line in enumerate(lines):
         PIFO_99FCT.append(float(l[3]))
         SPPIFO_99FCT.append(float(l[4]))
         AIFO_99FCT.append(float(l[5]))
-        MIFO_99FCT.append(float(l[6]))
-        RIFO_99FCT.append(float(l[7]))
+        RIFO_99FCT.append(float(l[6]))
     
 file = "pFabric_less_100KB_mean_fct_ms.dat"
 r = open(file, 'r')
@@ -88,8 +87,7 @@ for i, line in enumerate(lines):
         PIFO_mean_small.append(float(l[3]))
         SPPIFO_mean_small.append(float(l[4]))
         AIFO_mean_small.append(float(l[5]))
-        MIFO_mean_small.append(float(l[6]))
-        RIFO_mean_small.append(float(l[7]))
+        RIFO_mean_small.append(float(l[6]))
     
 
 file = "pFabric_geq_1MB_mean_fct_ms.dat"
@@ -103,8 +101,7 @@ for i, line in enumerate(lines):
         PIFO_large.append(float(l[3]))
         SPPIFO_large.append(float(l[4]))
         AIFO_large.append(float(l[5]))
-        MIFO_large.append(float(l[6]))
-        RIFO_large.append(float(l[7]))
+        RIFO_large.append(float(l[6]))
 
         
 RIFO_color='tab:red'
@@ -123,7 +120,6 @@ xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
 ax.plot((RIFO_mean_small),label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
-#ax.plot((MIFO_mean_small),label='MIFO' ,color=MIFO_color,linestyle='-', mfc='black',marker='d', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((AIFO_mean_small),label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((SPPIFO_mean_small),label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((PIFO_mean_small),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
@@ -136,8 +132,8 @@ legend =plt.legend(loc="upper left",numpoints=2, frameon=True, ncol=3, columnspa
 
 # ax.title.set_text('Flow size (0, 100KB)')
 # ytic=[0.35,0.40,0.45,0.50,0.55]
-ax.set_ylim(0,0.2)
-ax.set_yticks(np.arange(0,0.25,0.05))
+ax.set_ylim(0,0.1)
+ax.set_yticks(np.arange(0,0.125,0.025))
 # ax.set_yticks(ytic)
 # ax.set_yticklabels([str(i) for i in ytic])
 xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
@@ -158,8 +154,6 @@ set_paper_rcs()
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
 ax.plot((RIFO_99FCT),label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1,  mew=0.65)
-
-#ax.plot((MIFO_99FCT),label='MIFO' ,color=MIFO_color,linestyle='-', mfc='black',marker='d', markersize=3,lw=1,  mew=0.65)
 ax.plot((AIFO_99FCT),label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((SPPIFO_99FCT),label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((PIFO_99FCT),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
@@ -179,8 +173,8 @@ legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0
 ax.set_yscale('log')
 ax.set_ylim(0.1,int(max(FlowCover_FCT99_FB)))
 '''
-ax.set_ylim(0,0.7)
-ax.set_yticks(np.arange(0,0.8,0.1))
+ax.set_ylim(0,0.3)
+ax.set_yticks(np.arange(0,0.35,0.05))
 # ax.title.set_text('Flow size (0, 100KB)')
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
@@ -198,8 +192,6 @@ set_paper_rcs()
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
 ax.plot((RIFO_large),label='RIFO' ,color=RIFO_color,linestyle='-', mfc='tab:red',marker='d', markersize=3,lw=1 ,  mew=0.65)
-
-#ax.plot((MIFO_large),label='MIFO' ,color=MIFO_color,linestyle='-', mfc='black',marker='d', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((AIFO_large),label='AIFO' ,color=AIFO_color,linestyle='-', mfc='tab:blue',marker='s', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((SPPIFO_large),label='SP-PIFO' ,color=SPPIFO_color,linestyle='-', mfc='tab:orange',marker='o', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((PIFO_large),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:green',marker='X', markersize=3,lw=1 ,  mew=0.65)
@@ -211,8 +203,8 @@ ax.plot((TCP_large),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',
 # legend =plt.legend(loc="best",numpoints=2, frameon=False, ncol=1, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-ax.set_ylim(0,16)
-ax.set_yticks(range(0,18,2))
+ax.set_ylim(0,3)
+ax.set_yticks(np.arange(0,3.5,0.5))
 '''
 ax.set_ylim(0,700)
 ax.set_yticks(range(0,800,100))

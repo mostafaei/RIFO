@@ -64,7 +64,7 @@ DCTCP_mean_small=[]
 DCTCP_large=[]
 
 
-file = "pFabric_less_100KB_99th_fct_ms.dat"
+file = "fairness_less_100KB_99th_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -78,7 +78,7 @@ for i, line in enumerate(lines):
         AIFO_99FCT.append(float(l[6]))
         RIFO_99FCT.append(float(l[7]))
     
-file = "pFabric_less_100KB_mean_fct_ms.dat"
+file = "fairness_less_100KB_mean_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -93,7 +93,7 @@ for i, line in enumerate(lines):
         RIFO_mean_small.append(float(l[7]))
     
 
-file = "pFabric_geq_1MB_mean_fct_ms.dat"
+file = "fairness_geq_1MB_mean_fct_ms.dat"
 r = open(file, 'r')
 lines = r.readlines()
 for i, line in enumerate(lines):
@@ -134,12 +134,10 @@ ax.grid(color='black', ls = '--',dashes=(5, 15), lw = 0.2,alpha=1)
 # legend =plt.legend(bbox_to_anchor=(0.95, 1.05),loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="upper left",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-# ax.title.set_text('Flow size (0, 100KB)')
-# ytic=[0.35,0.40,0.45,0.50,0.55]
-ax.set_ylim(0,10)
-ax.set_yticks(np.arange(0,12,2))
-# ax.set_yticks(ytic)
-# ax.set_yticklabels([str(i) for i in ytic])
+
+ax.set_ylim(0,0.3)
+ax.set_yticks(np.arange(0,0.35,0.05))
+
 xlabeles=[0.2,0.3,0.4,0.5,0.6,0.7,0.8]
 print(xlabeles)
 for ax in fig.get_axes():
@@ -165,23 +163,10 @@ ax.plot((PIFO_99FCT),label='PIFO' ,color=PIFO_color,linestyle='-', mfc='tab:gree
 ax.plot((DCTCP_99FCT),label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:purple',marker='^', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((TCP_99FCT),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((AFQ_99FCT),label='AFQ' ,color=AFQ_color,linestyle='-', mfc='tab:brown',marker='>', markersize=3,lw=1 ,  mew=0.65)
-
-
 ax.grid(color='black', ls = '--',dashes=(5, 15), lw = 0.2,alpha=1)
-# legend =plt.legend(bbox_to_anchor=(0.95, 1.05),loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
-
-# ytic=[2.5,3.0,3.5,4.0,4.5]
-# ax.set_ylim(2.5,4.5)
-# ax.set_yticks(ytic)
-# ax.set_yticklabels([str(i) for i in ytic])
-'''
-ax.set_yscale('log')
-ax.set_ylim(0.1,int(max(FlowCover_FCT99_FB)))
-'''
-ax.set_ylim(0,50)
-ax.set_yticks(range(0,60,10))
-# ax.title.set_text('Flow size (0, 100KB)')
+ax.set_ylim(0,0.35)
+ax.set_yticks(np.arange(0,0.4,0.05))
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
     ax.set_xticklabels([str(i) for i in xlabeles])
@@ -193,7 +178,7 @@ name='FCT99-websearch-wfq'
 plt.savefig('%s.pdf'%name,format="pdf", bbox_inches='tight', pad_inches=0.05)
 plt.close()
 
-#**************************Large********************************************
+#**************************Large ge1M********************************************
 set_paper_rcs()
 
 fig,ax = plt.subplots(nrows=1, ncols=1)
@@ -205,21 +190,11 @@ ax.plot((DCTCP_large),label='DCTCP' ,color=DCTCP_color,linestyle='-', mfc='tab:p
 ax.plot((TCP_large),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',marker='v', markersize=3,lw=1 ,  mew=0.65)
 ax.plot((AFQ_large),label='AFQ' ,color=AFQ_color,linestyle='-', mfc='tab:brown',marker='>', markersize=3,lw=1 ,  mew=0.65)
 
-
-# ax.title.set_text('Large flows')
-# legend =plt.legend(loc="best",numpoints=2, frameon=False, ncol=1, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-ax.set_ylim(0,200)
-ax.set_yticks(range(0,220,20))
-'''
-ax.set_ylim(0,700)
-ax.set_yticks(range(0,800,100))
-ax.set_yticklabels([str(i) for i in range(0,800,100)], fontsize=11)
+ax.set_ylim(0,0.6)
+ax.set_yticks(np.arange(0,0.7,0.1))
 
-ax.set_yscale('log')
-ax.set_ylim(1000,int(max(FlowCover_avgFCTLarge_FB)))
-'''
 for ax in fig.get_axes():
     ax.set_xticks(range(0,7))
     ax.set_xticklabels([str(i) for i in xlabeles])
@@ -231,5 +206,4 @@ fig.tight_layout()
 name='avgFCTLarge-websearch-wfq'
 plt.savefig('%s.pdf'%name,format="pdf", bbox_inches='tight', pad_inches=0.05)
 plt.close()
-
 

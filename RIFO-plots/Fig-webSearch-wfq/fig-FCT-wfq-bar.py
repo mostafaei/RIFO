@@ -22,8 +22,8 @@ os.chdir(".")
 
 #from mpl_toolkits.axes_grid.inset_locator import (inset_axes, InsetPosition,mark_inset)
 
-import matplotlib.font_manager
-matplotlib.font_manager._rebuild()
+# import matplotlib.font_manager
+# matplotlib.font_manager._rebuild()
 
 matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')
 mpl.rcParams['font.family'] = ['serif']

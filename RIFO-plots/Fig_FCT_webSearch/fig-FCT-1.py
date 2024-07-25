@@ -196,8 +196,8 @@ ax.plot((TCP_large),label='TCP' ,color=TCP_color,linestyle='-', mfc='tab:olive',
 # legend =plt.legend(loc="best",numpoints=2, frameon=False, ncol=1, columnspacing=0.8, handletextpad=0.2)
 legend =plt.legend(loc="best",numpoints=2, frameon=True, ncol=3, columnspacing=0.8, handletextpad=0.2)
 
-ax.set_ylim(0,140)
-ax.set_yticks(range(0,160,20))
+ax.set_ylim(0,60)
+ax.set_yticks(range(0,70,10))
 '''
 ax.set_ylim(0,700)
 ax.set_yticks(range(0,800,100))
