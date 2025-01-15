@@ -17,7 +17,6 @@ const bit<16> ETHERTYPE_TPID = 0x8100;
 const bit<16> ETHERTYPE_IPV4 = 0x0800;
 const bit<16> ETHERTYPE_WORKER= 0x4321;
 
-
 /* Table Sizes */
 
 #ifdef USE_ALPM
@@ -25,7 +24,6 @@ const int IPV4_LPM_SIZE  = 400*1024;
 #else
 const int IPV4_LPM_SIZE  = 12288;
 #endif
-
 
 #ifdef USE_STAGE
 #define STAGE(n) @stage(n)
@@ -35,7 +33,6 @@ const int IPV4_LPM_SIZE  = 12288;
 
 typedef bit<48>   mac_addr_t;
 typedef bit<32>   ipv4_addr_t;
-
 
 /*************************************************************************
 ***********************  H E A D E R S  *********************************
@@ -86,7 +83,6 @@ header udp_h {
    bit<16> checksum;
 }
 
-
 header rifoWorker_h {
     bit<18>     qlength;    // Queue occupancy in cells
     bit<1>      ping_pong;  // Reserved for internal purposes
@@ -94,11 +90,9 @@ header rifoWorker_h {
     bit<2>      pipe_id;
 }
 
-
 header rifo_h {
    bit<16> rank;
 }
-
 
 /*************************************************************************
 **************  I N G R E S S   P R O C E S S I N G   *******************
@@ -106,7 +100,6 @@ header rifo_h {
 
 
    /***********************  H E A D E R S  ************************/
-
 
 struct headers_t {
    ethernet_h          ethernet;
@@ -231,7 +224,6 @@ parser SwitchIngressParser(
 }
    /***************** M A T C H - A C T I O N  *********************/
 
-
 control Ingress(
    /* User */
    inout headers_t                       hdr,
@@ -245,7 +237,6 @@ control Ingress(
    action send(PortId_t port) {
        ig_tm_md.ucast_egress_port = port;
    }
-
 
    action drop() {
        ig_dprsr_md.drop_ctl = 1;
@@ -336,7 +327,6 @@ control Ingress(
 
    action action_do_RIFO_admission(){
        ig_md.rifo_admission = max( ig_md.left_side, ig_md.right_side);
-       //ig_md.rifo_admision = ig_md.right_side - ig_md.left_side;
     }
     table RIFO_admission{
        actions = { action_do_RIFO_admission;}
@@ -436,69 +426,51 @@ control Ingress(
    }
    apply {
         if (hdr.ipv4.isValid()) {
-            bit<16> hbb=0;
-            // @stage(0){
-                // do routing to get the egress port and qid
-                ipv4_host.apply();
-                set_rank();
 
-            // }
-
+            // do routing to get the egress port and qid
+            ipv4_host.apply();
+            set_rank();
             if(hdr.rifoWorker.isValid()){
-                //  @stage(1){
                     set_ig_queue_length.apply();
-                    // ig_tm_md.qid=(bit<5>)0;
                     rifoWorker_recirculate();
-                //  }
             }
             else if(hdr.udp.isValid() || hdr.tcp.isValid()){
-                // @stage(2){
 
-                    //Get Max and Min ranks
-                    ig_md.min_pkt_rank = min_rank_reg_write_action.execute(rifo_index);
-                    ig_md.max_pkt_rank = max_rank_reg_write_action.execute(rifo_index);
-                // }
-                // @stage(4){
-                    /*compute dividend (Max-rank) and divisor (Max-Min)*/
-                    compute_divisor.apply();
-                    compute_dividend.apply();
+                //Get Max and Min ranks
+                ig_md.min_pkt_rank = min_rank_reg_write_action.execute(rifo_index);
+                ig_md.max_pkt_rank = max_rank_reg_write_action.execute(rifo_index);
 
-                    get_ig_queue_length.apply();
-                    //compute the actual queue length (B-L)
-                    subtract_queueLength.apply();
-                    //find exponent of the remaining queue length (B-L) using lookup tables
+                /*compute dividend (Max-rank) and divisor (Max-Min)*/
+                compute_divisor.apply();
+                compute_dividend.apply();
 
-                // }
-                // @stage(6){
-                    queue_length_lookup.apply();
-                    //find (max - min) exponent using lookup
-                    max_min_lookup.apply();
-                // }
-                // @stage(7){
-                    //do multiplication of (max-min) * (B-l) using lookup tables
-                    max_min_buffer_lookup.apply();
+                get_ig_queue_length.apply();
+                //compute the actual queue length (B-L)
+                subtract_queueLength.apply();
+                //find exponent of the remaining queue length (B-L) using lookup tables
 
-                    //get exponent of dividend
-                    dividend_lookup.apply();
+                queue_length_lookup.apply();
+                //find (max - min) exponent using lookup
+                max_min_lookup.apply();
 
+                //do multiplication of (max-min) * (B-l) using lookup tables
+                max_min_buffer_lookup.apply();
 
-                // }
-                // @stage(8){
-                     calculate_left_side.apply();
+                //get exponent of dividend
+                dividend_lookup.apply();
 
-                    /* check RIFO admision condition */
-                    RIFO_admission.apply();
-                // }
-                    // one condition for all
-                    // (1-K) * (Max-rank) * B >= (B-l) * (Max-Min)
-                // }
-                // @stage(9){
+                 calculate_left_side.apply();
 
-                    if ( ig_md.rifo_admission == ig_md.left_side) {
-                        /* Drop this packet */
-                        ig_dprsr_md.drop_ctl = 0x1;
-                    }
+                /* check RIFO admision condition */
+                RIFO_admission.apply();
 
+                // one condition for all
+                // (1-K) * (rank-Min) * B >= (B-l) * (Max-Min)
+
+                if ( ig_md.rifo_admission == ig_md.left_side) {
+                    /* Drop this packet */
+                    ig_dprsr_md.drop_ctl = 0x1;
+                }
             }
        }
     }
@@ -533,9 +505,7 @@ control IngressDeparser(packet_out pkt,
                 hdr.ipv4.dst_addr
             });
         }
-
         pkt.emit(hdr);
-
    }
 }
 
@@ -582,15 +552,12 @@ control Egress(
     RegisterAction<bit<16>, _, bit<16>>(eg_queue_length_reg) eg_queue_length_reg_write = {
        void apply(inout bit<16> value, out bit<16> read_value){
             value = eg_intr_md.enq_qdepth[15:0];
-            // value = 61;
             read_value = value;
        }
    };
    RegisterAction<bit<16>, _, bit<16>>(eg_queue_length_reg) eg_queue_length_reg_read = {
        void apply(inout bit<16> value, out bit<16> read_value){
-            // value=value+1;
             read_value = value;
-            read_value=value;
        }
    };
 

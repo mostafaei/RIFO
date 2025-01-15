@@ -65,18 +65,17 @@ ch/ethz/systems/netbench/ext/flowlet/UniformFlowletIntermediaryGenerator.class
 ch/ethz/systems/netbench/ext/trafficpair/TrafficPairPlanner.class
 ch/ethz/systems/netbench/xpt/voijslav_and_sppifo/tcp/sparktcp/SparkSocket.class
 ch/ethz/systems/netbench/core/run/MainSimulation.class
-ch/ethz/systems/netbench/core/run/MainFigure10.class
 ch/ethz/systems/netbench/ext/valiant/ValiantEncapsulation.class
 ch/ethz/systems/netbench/xpt/newreno/TcpRetransmissionTimeOutEvent.class
 ch/ethz/systems/netbench/xpt/voijslav_and_sppifo/ports/BoundedPriorityOutputPort$1.class
 ch/ethz/systems/netbench/xpt/utility/SequenceUtility.class
-ch/ethz/systems/netbench/core/run/MainFigure14.class
 ch/ethz/systems/netbench/xpt/newreno/newrenotcp/NewRenoTcpTransportLayer.class
 ch/ethz/systems/netbench/ext/valiant/ValiantEcmpSwitch.class
 ch/ethz/systems/netbench/ext/demo/DemoIntermediaryGenerator.class
 ch/ethz/systems/netbench/xpt/tcpbase/AckRange.class
 ch/ethz/systems/netbench/xpt/simple/simpledctcp/SimpleDctcpTransportLayer.class
 ch/ethz/systems/netbench/core/network/Link.class
+ch/ethz/systems/netbench/core/run/MainFigure11.class
 ch/ethz/systems/netbench/xpt/rifo/ports/AIFO_WFQ/WFQAIFOOutputPortGenerator.class
 ch/ethz/systems/netbench/xpt/rifo/ports/AIFO/AIFOOutputPortGenerator.class
 ch/ethz/systems/netbench/xpt/rifo/ports/Greedy/GreedyOutputPort_Advanced.class
@@ -164,6 +163,7 @@ ch/ethz/systems/netbench/ext/ecmp/ForwarderSwitch.class
 ch/ethz/systems/netbench/ext/basic/EcnTailDropOutputPortGenerator.class
 ch/ethz/systems/netbench/xpt/voijslav_and_sppifo/tcp/lstftcp/RandomNumberGenerator$7.class
 ch/ethz/systems/netbench/xpt/simple/simpledctcp/SimpleDctcpSocket.class
+ch/ethz/systems/netbench/core/run/MainFigure6.class
 edu/asu/emit/algorithm/utils/QYPriorityQueue.class
 ch/ethz/systems/netbench/xpt/utility/pairprob/deprecated/SkewedTrafficPairProbabilitiesOneStageCreator.class
 ch/ethz/systems/netbench/xpt/sourcerouting/EcmpThenSourceRoutingSwitch.class

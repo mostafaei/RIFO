@@ -22,8 +22,8 @@ mvn clean compile assembly:single
     ```
     java -jar -ea NetBench.jar x
     ``` 
-   where `x` is the index of figure in the paper (i.e. 7, 8, 9, 10, 11, 12, 13, 14, or 0) (e.g., `java -jar -ea NetBench.jar 7` runs simulations for Figure 7). You can run all experiments together sequentially by seeting `x` to 0.
-   **Please do not open multiple terminals and run multiple figures concurrently, since the `temp` file paths can be overlapping. Additionally, make sure that you have enough disk space to run all experiments since depending on the number of experiments, the temp directory grows.**
+   where `x` is the index of figure in the paper (i.e. 6,7, 8, 9, 11, 12, 13, or 0) (e.g., `java -jar -ea NetBench.jar 6` runs simulations for Figure 6). You can run all experiments together sequentially by setting `x` to 0.
+   **Please avoid opening multiple terminals and running multiple figures concurrently, as overlapping temp file paths may cause conflicts. Ensure you have sufficient disk space for the experiments, as the `temp` directory can grow significantly depending on the number of simulations. Running all simulations requires more than 2.5TB of disk space and may take 2-3 months to complete. To save disk space and speed up simulation execution, consider reducing the link capacities by an order of magnitude.**
 
 2. After running the experiments, the log files are saved in the `./temp/rifo/rifo_evaluation` folder
 
@@ -83,13 +83,13 @@ More information about the framework can be found in the thesis located at [http
 
 * **Result analysis**: The scripts used to analyze the simulation results, `analyze.py`, and to generate the paper plots, `plot.gnuplot`, are placed in the `./projects/sppifo/plots` folder, under the same organizational structure:
 
-   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload` contains the results for Figure 7.
-   * `./project/rifo/plots/rifo_evaluation/pFabric/data_mining_workload` contains the results for Figure 8.
-   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_T` contains the results for Figure 9.
-   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_q_len` contains the results for Figure 10.
-   * `./project/rifo/plots/rifo_evaluation/fairness/web_search_workload` contains the results for Figure 12.
-   * `./project/rifo/plots/rifo_evaluation/fairness/data_mining_search_workload` contains the results for Figure 13.
-   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_pareto` contains the results for Figure 14.
+   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload` contains the results for Figure 6.
+   * `./project/rifo/plots/rifo_evaluation/pFabric/data_mining_workload` contains the results for Figure 7.
+   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_T` contains the results for Figure 8.
+   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_q_len` contains the results for Figure 9.
+   * `./project/rifo/plots/rifo_evaluation/fairness/web_search_workload` contains the results for Figure 11.
+   * `./project/rifo/plots/rifo_evaluation/fairness/data_mining_search_workload` contains the results for Figure 12.
+   * `./project/rifo/plots/rifo_evaluation/pFabric/web_search_workload_pareto` contains the results for Figure 13.
 
 * **Main file to run the simulations**: You can run each experiment using the `MainFigure_.java` file in `src/main/java/ch.ethz.systems.netbench/core/run`. The duration of each experiment is one second, but depending on the capacity of the links and the amount of generated traffic, the actual running time of the experiments varies. by running each file, NetBench will simulate `./projects/rifo/runs` and put them in `./temp/rifo/`. The results of those runs will be stored in `./projects/rifo/plots` as plots, along with the data to generate them.
 

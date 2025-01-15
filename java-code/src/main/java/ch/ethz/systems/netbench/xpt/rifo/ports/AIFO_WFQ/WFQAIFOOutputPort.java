@@ -34,14 +34,14 @@ public class WFQAIFOOutputPort extends OutputPort {
     private double qlen;
 
     //Control the sample rate
-    private int sampleCount;
+    private int rankRange;
     private boolean isServer;
 
     /*STFQ Attributes*/
     private final Map last_finishTime;
     //private int round;
 
-    WFQAIFOOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, int windowSize, int sampleCount, float kValue) {
+    WFQAIFOOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, int windowSize, int rankRange, float kValue) {
         super(ownNetworkDevice, targetNetworkDevice, link, new WFQAIFOOutputQueue<Packet>());
         // ignore this maxQueueSize
         this.isServer = ownNetworkDevice.isServer();
@@ -65,8 +65,8 @@ public class WFQAIFOOutputPort extends OutputPort {
         //this.qlen = 1000.0f;
         this.qlen = maxQueueSize;
 
-        this.sampleCount = sampleCount;
-//        this.sampleCount = 1;
+        this.rankRange = rankRange;
+//        this.rankRange = 1;
         //this.qlen = 100;
 
         /*STFQ Attributes*/
@@ -148,7 +148,7 @@ public class WFQAIFOOutputPort extends OutputPort {
                 }
             }
             this.count = this.count + 1;
-            if (this.count == this.sampleCount) {
+            if (this.count == this.rankRange) {
                 this.count = 0;
             }
 

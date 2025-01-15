@@ -9,18 +9,17 @@ public class WFQRIFOOutputPortGenerator extends OutputPortGenerator {
     private final long maxQueueSize;
 //    private final int windowSize;
 
-    private final int sampleCount;
+    private final int rankRange;
     private final float kValue;
 
-    public WFQRIFOOutputPortGenerator(long maxQueueSize, int sampleCount, float kValue) {
+    public WFQRIFOOutputPortGenerator(long maxQueueSize, int rankRange, float kValue) {
         this.maxQueueSize = maxQueueSize;
-//        this.windowSize = windowSize;
-        this.sampleCount = sampleCount;
+        this.rankRange = rankRange;
         this.kValue = kValue;
     }
 
     @Override
     public OutputPort generate(NetworkDevice ownNetworkDevice, NetworkDevice towardsNetworkDevice, Link link) {
-        return new WFQRIFOOutputPort(ownNetworkDevice, towardsNetworkDevice, link, maxQueueSize, sampleCount, kValue);
+        return new WFQRIFOOutputPort(ownNetworkDevice, towardsNetworkDevice, link, maxQueueSize, rankRange, kValue);
     }
 }

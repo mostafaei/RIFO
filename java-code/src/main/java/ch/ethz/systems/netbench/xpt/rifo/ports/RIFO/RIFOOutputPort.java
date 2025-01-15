@@ -36,12 +36,12 @@ public class RIFOOutputPort extends OutputPort {
 
     private double qlen;
 
-    //Control the sample rate
-    private int sampleCount;
+    //Control the rank range
+    private int rankRange;
     private boolean isServer;
 
 
-    RIFOOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, int sampleCount, float kValue) {
+    RIFOOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, int rankRange, float kValue) {
         super(ownNetworkDevice, targetNetworkDevice, link, new LinkedBlockingQueue<Packet>());
         //super(ownNetworkDevice, targetNetworkDevice, link, new WFQAIFOOutputQueue<Packet>());
         // ignore this maxQueueSize
@@ -69,7 +69,7 @@ public class RIFOOutputPort extends OutputPort {
         //this.qlen = 1000.0f;
         this.qlen = maxQueueSize;
 
-        this.sampleCount = sampleCount;
+        this.rankRange = rankRange;
     }
 
     @Override
@@ -117,7 +117,7 @@ public class RIFOOutputPort extends OutputPort {
 
             double qRank=(this.qlen - buffQueue.size()) / this.qlen;
             this.count = this.count + 1;
-            if (this.count == this.sampleCount) {
+            if (this.count == this.rankRange) {
                 this.count = 0;
                 maxRank=Integer.MIN_VALUE;
                 minRank=Integer.MAX_VALUE;
@@ -193,23 +193,4 @@ public class RIFOOutputPort extends OutputPort {
             this.reentrantLock.unlock();
         }
     }
-
-        public double findRank(int priority) {
-            if (qWindow.size() == 0)
-                return 1.0;
-            Object[] contentPIFO = qWindow.toArray();
-            double RIFOpr = 0;
-            double maxR = Double.NEGATIVE_INFINITY;
-            double minR = Double.POSITIVE_INFINITY;
-            for (int i = 0; i < contentPIFO.length; i++) {
-                FullExtTcpPacket packet = (FullExtTcpPacket) contentPIFO[(int) i];
-                long packetRank = packet.getPriority();
-                if (packetRank < minR)
-                    minR = packetRank;
-                else if (packetRank > maxR)
-                    maxR = packetRank;
-            }
-            RIFOpr = (maxR - priority) / (maxR - minR);
-            return RIFOpr;
-        }
 }

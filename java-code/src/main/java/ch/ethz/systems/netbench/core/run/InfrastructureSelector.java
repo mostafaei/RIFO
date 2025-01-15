@@ -244,7 +244,7 @@ class InfrastructureSelector {
             case "wfqrifo":
                 return new WFQRIFOOutputPortGenerator(
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
-                        Simulator.getConfiguration().getIntegerPropertyOrFail("sample_count"),
+                        Simulator.getConfiguration().getIntegerPropertyOrFail("rank_range"),
                         (float) Simulator.getConfiguration().getDoublePropertyOrFail("k_value")
                 );
 
@@ -264,7 +264,7 @@ class InfrastructureSelector {
             case "rifo":
                 return new RIFOOutputPortGenerator(
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
-                        Simulator.getConfiguration().getIntegerPropertyOrFail("sample_count"),
+                        Simulator.getConfiguration().getIntegerPropertyOrFail("rank_range"),
                         (float) Simulator.getConfiguration().getDoublePropertyOrFail("k_value")
                 );
 

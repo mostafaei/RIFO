@@ -87,6 +87,7 @@ public class BaseAllowedProperties {
             "window_size",
             "items_per_window",
             "accept_threshold",
+            "rank_range",
 
             "Kc",
             "second_transport_layer",
