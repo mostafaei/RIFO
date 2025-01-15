@@ -1,5 +1,6 @@
 # Mac
 .DS_Store
+._DS_Store
 
 # Excutable file
 bin/
