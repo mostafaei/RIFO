@@ -1,6 +1,6 @@
 # RIFO: Pushing the Efficiency of Programmable Packet Schedulers
 
-This repository contains the code used in RIFO, which is currently under submission.
+This repository contains the code used in RIFO, which has been accepted for publication in the IEEE/ACM Transactions on Networking.
 
 ## What can I find in this repo?
 
@@ -9,12 +9,12 @@ We have used this implementation to evaluate the performance of RIFO under diffe
 
 * `p4-code` contains the P4_16 code RIFO on  Tofino programmable switches.
 
-* `RIFO-plots` contains the plot scripts and their data for the figures if you do not want to run the simulations runs.
+* `RIFO-plots` contains the plot scripts and their data for the figures if you do not want to run the simulations.
 
  ## Contact
 
 Please, send me an e-mail to: h.mostafaei@tue.nl,
-- If you are interested in collaborating with this project.
-- If you face any issue in running the code.
+- If you are interested in collaborating on this project,
+- If you face any issues running the code,
 - If you find a bug.
-- If you have any question or concern.
+- If you have any questions or concerns.
